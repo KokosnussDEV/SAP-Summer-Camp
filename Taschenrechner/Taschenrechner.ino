@@ -7,8 +7,9 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   if (Serial.available() > 0) {
-    int i = Serial.read();
-    Serial.println(i);
+    char i = Serial.read();
+    String i2 = String(i);
+    Serial.print(i);
   }
 
 }
