@@ -1,4 +1,7 @@
 #include "Romi.h"
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 Romi robot;
 
@@ -6,6 +9,8 @@ Romi robot;
 void setup() {
   // put your setup code here, to run once:
   robot.init();
+  lcd.init();
+  lcd.backlight();
 }
 
 void loop() {
@@ -21,4 +26,8 @@ void loop() {
     }
     robot.showLeds();
   }
+  lcd.setCursor(0, 0);
+  lcd.print("SAP Summer");
+  lcd.setCursor(0, 1);
+  lcd.print("Viel Erfolg!");
 }

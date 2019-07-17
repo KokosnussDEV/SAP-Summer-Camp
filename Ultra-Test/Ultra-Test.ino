@@ -11,9 +11,13 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  double entfernungen[3];
   Serial.print(robot.distanceLeft());
   Serial.print(" ");
   Serial.print(robot.distanceFront());
   Serial.print(" ");
   Serial.println(robot.distanceRight());
+  robot.measureDistances(entfernungen);
+  Serial.print(entfernungen[1]);
+  Serial.println(" ");
 }
