@@ -12,10 +12,10 @@ void loop() {
   // put your main code here, to run repeatedly:
   /* Serial.print(robot.readEncoderLeft());
   Serial.print(" ");
-  Serial.println(robot.readEncoderRight());
-  delay(1000); */
-  robot.turn(270, 500);
+  Serial.println(robot.readEncoderRight());*/
+  robot.turn(0, 0);
   robot.driveStraight(500);
   robot.driveLoop();
-  delay(1000);
+  delay(7000);
+  robot.turn(200, 300);
 }
