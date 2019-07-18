@@ -13,24 +13,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if (robot.distanceLeft() < 30 && robot.distanceFront() < 30 && robot.distanceRight() < 30) {
-      for (int i = 300; i >= 0; i = i - 50) {
-        robot.turn(0, 0);
-        robot.driveStraight(i);
-        robot.driveLoop();
-        delay(50);
-      }
-      robot.turn(5, 300);
-  } else {
-      robot.turn(0, 0);
-      for (int i = 0; i <= 300; i = i + 50) {
-        robot.turn(0, 0);
-        robot.driveStraight(i);
-        robot.driveLoop();
-        delay(50);
-      }
-   }
-  
+  robot.turn(0, 0);
+  while (robot.distanceLeft() > 20 && robot.distanceFront() > 20 && robot.distanceRight() > 20) {
+    robot.turn(0, 0);
+    robot.driveStraight(300);
+    robot.driveLoop();
+  }
+  robot.driveStraight(0);
+  robot.turn(90, 500);
 }
 
 void entfernungenAnzeigen(void *pvParameters){
