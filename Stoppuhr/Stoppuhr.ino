@@ -11,21 +11,21 @@ void setup() {
   robot.init();
   lcd.init();
   lcd.backlight();
+  lcd.begin(16, 2);
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   Serial.begin(115200);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  long zeit = millis();
-  lcd.begin(16, 2);
-  lcd.setCursor(1, 1);
+  //long zeit = millis();
+  lcd.setCursor(0, 0);
   
   if (digitalRead(BUTTON_PIN) == LOW) {
     long zeitVergangen = 0;
     while(digitalRead(BUTTON_PIN) == HIGH) {
         zeitVergangen++;
-        //lcd.print(String(zeitVergangen));
+        lcd.write(zeitVergangen);
         Serial.println(zeitVergangen);
         delay(1000);
     }
