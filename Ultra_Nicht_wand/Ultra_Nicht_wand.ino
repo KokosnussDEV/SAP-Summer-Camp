@@ -14,13 +14,17 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   robot.turn(0, 0);
+  Serial.print(robot.distanceLeft());
+  Serial.print(robot.distanceFront());
+  Serial.println(robot.distanceRight());
   while (robot.distanceLeft() > 20 && robot.distanceFront() > 20 && robot.distanceRight() > 20) {
+    Serial.println("in der while");
     robot.turn(0, 0);
-    robot.driveStraight(300);
+    robot.driveStraight(500);
     robot.driveLoop();
   }
   robot.driveStraight(0);
-  robot.turn(90, 500);
+  robot.turn(3, 500);
 }
 
 void entfernungenAnzeigen(void *pvParameters){

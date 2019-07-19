@@ -7,7 +7,6 @@ void setup() {
   Serial.begin(115200);
   robot.init();
   robot.createTask(entfernungenAnzeigen, "entfernungenAnzeigen");
-  
 }
 
 void loop() {
@@ -20,8 +19,7 @@ void loop() {
     robot.driveStraight(0);
     robot.driveLoop();
     while (true) {
-      Serial.println(robot.distanceFront());
-      if (robot.distanceFront() < 30 && robot.distanceFront() > 0) {
+      if (robot.distanceFront() > 30 || robot.distanceFront() < 0) {
         robot.turn(0,0);
         if (digitalRead(LINE_LEFT_PIN) == HIGH) {
           robot.driveStraight(200);
@@ -40,7 +38,7 @@ void loop() {
             robot.driveStraight(0);
           }
         }
-      }else {
+      } else {
         robot.driveStraight(-50);
         robot.driveLoop();
         delay(100);
@@ -55,12 +53,8 @@ void loop() {
 
 void entfernungenAnzeigen(void *pvParameters){
   while(true){
-    int color = 2;
     for (int i = 0; i < 3; i++) {
-      if ((color % 2) == 0) {
-        robot.leds[i] = CRGB::Blue;
-      }
-      robot.leds[i] = CRGB::Red;
+      robot.leds[i] = CRGB::Blue;
     }
     robot.showLeds();
     delay(100);
@@ -68,10 +62,7 @@ void entfernungenAnzeigen(void *pvParameters){
       robot.leds[i] = CRGB::Black;
     }
     for (int i = 0; i < 3; i++) {
-      if ((color % 2) == 0) {
-        robot.leds[i+3] = CRGB::Red;
-      }
-      robot.leds[i+3] = CRGB::Blue;
+      robot.leds[i+3] = CRGB::Red;
     }
     robot.showLeds();
     delay(100);
@@ -79,6 +70,5 @@ void entfernungenAnzeigen(void *pvParameters){
       robot.leds[i+3] = CRGB::Black;
     }
     robot.showLeds();
-    color++;
    }
   }
